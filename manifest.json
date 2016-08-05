@@ -1,0 +1,45 @@
+{
+  "manifest_version": 2,
+  "name": "KenHQ extension",
+  "description": "KenHQ extension",
+  "version": "0.1.0",
+  "background" : {
+    "scripts" : [
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://github.com/*/*"
+      ],
+      "exclude_matches": [
+        "*://github.com/showcases/*",
+        "*://github.com/trending/*",
+        "*://github.com/integrations/*",
+        "*://github.com/blog/*",
+        "*://github.com/business/*",
+        "*://github.com/open-source/*",
+        "*://github.com/site/*",
+        "*://github.com/security/*",
+        "*://github.com/contact/*",
+        "*://github.com/about/*",
+        "*://github.com/explore/*",
+        "*://github.com/settings/*",
+        "*://github.com/new/*",
+        "*://github.com/notifications/*",
+        "*://github.com/*/*/notifications",
+        "*://github.com/issues/*",
+        "*://github.com/pulls/*",
+        "*://github.com/orgs/*"
+      ],
+      "js": [
+        "contentscript.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    "frame/index.html",
+    "frame/script.js"
+  ]
+}
