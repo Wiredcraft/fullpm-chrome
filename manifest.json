@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "KenHQ extension",
-  "description": "KenHQ extension",
+  "name": "fullpm",
+  "description": "The Chrome extension for fullpm",
   "version": "0.1.0",
   "background" : {
     "scripts" : [
