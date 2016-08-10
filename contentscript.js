@@ -4,15 +4,15 @@ var contentHeight // header + footer only height
 // Append kanban button to page
 function appendButtonToNav () {
   // Stop if button exists already
-  if (document.getElementById('kenhq')) { return null }
+  if (document.getElementById('fullpm')) { return null }
 
   navElem = document.getElementsByClassName('js-repo-nav')[0]
   if (navElem) {
     aEl = document.createElement('a');
     aEl.addEventListener('click', appendContentToPage)
-    aEl.text = 'Kanban';
-    aEl.id = 'kenhq';
-    aEl.href = '#kenhq';
+    aEl.text = 'Board';
+    aEl.id = 'fullpm';
+    aEl.href = '#fullpm';
     aEl.classList = ['js-selected-navigation-item reponav-item']
     navElem.appendChild(aEl)
   }
