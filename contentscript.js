@@ -1,5 +1,6 @@
 var iframe
 var contentHeight // header + footer only height
+var userOnline = null // null === not yet known
 
 // Append board button to page
 function appendButtonToNav () {
@@ -27,6 +28,11 @@ function resize () {
 
 // Replace content with board
 function appendContentToPage () {
+  // Do not append content until onlineStatus is known
+  if (userOnline === null) return setTimeout(appendContentToPage, 1000)
+  // Not logged in, request login
+  if (userOnline === false) return requestLogin()
+
   // Get current user/org name & repo name
   var pathArray = window.location.pathname.replace('/', '').split('/')
   var name = pathArray[0]
@@ -75,10 +81,22 @@ function appendContentToPage () {
   window.onresize = resize
 }
 
+function requestLogin () {
+  chrome.runtime.sendMessage({ type: 'loginRedirect' })
+}
+
+function updateUserOnline () {
+  chrome.runtime.sendMessage({ type: 'requestStatus'}, function (res) {
+    if (res.status === true) userOnline = true
+    else userOnline = false
+  })
+}
+
 // Background script message listener
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   switch (request.type) {
     case 'complete': // GitHub AJAX page updates complete, ensure kanban button is still appended to tabs
+      updateUserOnline()
       appendButtonToNav()
       if (window.location.hash === '#board') appendContentToPage() // If #board is in url on github page, open our tab
       break
@@ -89,4 +107,5 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 })
 
 // Append button on load
+updateUserOnline()
 appendButtonToNav()
