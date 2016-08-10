@@ -11,4 +11,4 @@ This is the Chrome extension for [FullPM](https://wiredcraft.com/fullpm). It all
 1. Click on the `Load unpacked extension...` button below the title.
 1. Select the `fullpm-chrome/` folder on your local.
 
-If installed correctly, you should see a new "Kanban" tab when visiting any GitHub repository page.
+If installed correctly, you should see a new "Board" tab when visiting any GitHub repository page.

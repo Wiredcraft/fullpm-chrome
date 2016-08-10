@@ -20,5 +20,5 @@ function generateIframe(queryObj) {
 };
 
 var iframe = generateIframe(getJsonFromUrl())
-var kanban = document.getElementById('kanban')
-kanban.appendChild(iframe)
+var fullpm = document.getElementById('fullpm')
+fullpm.appendChild(iframe)

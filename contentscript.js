@@ -1,7 +1,7 @@
 var iframe
 var contentHeight // header + footer only height
 
-// Append kanban button to page
+// Append board button to page
 function appendButtonToNav () {
   // Stop if button exists already
   if (document.getElementById('fullpm')) { return null }
@@ -25,7 +25,7 @@ function resize () {
   iframe.style.cssText = 'width:100%;height:' + iframeHeight  + 'px;border:none';
 }
 
-// Replace content with kanban
+// Replace content with board
 function appendContentToPage () {
   // Get current user/org name & repo name
   var pathArray = window.location.pathname.replace('/', '').split('/')
