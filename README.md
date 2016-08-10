@@ -2,7 +2,7 @@
 
 This is the Chrome extension for [FullPM](https://wiredcraft.com/fullpm). It allows you to manage and organize your issues on a kanban board directly within GitHub.
 
-## How to ue it
+## How to use it
 
 1. Download the latest version from https://github.com/Wiredcraft/fullpm-chrome/releases/latest.
 1. Uncompress the downloaded file; you should get a `fullpm-chrome/` folder.
@@ -12,13 +12,3 @@ This is the Chrome extension for [FullPM](https://wiredcraft.com/fullpm). It all
 1. Select the `fullpm-chrome/` folder on your local.
 
 If installed correctly, you should see a new "Kanban" tab when visiting any GitHub repository page.
-
-## Extra
-
-You can manage additional settings by visiting the `chrome://extensions/` page;
-
- - Inspect the background page
- - Reload the extension (after you make changes)
- - Enable/Disable
- - Remove
- - View Permissions
