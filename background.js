@@ -22,7 +22,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 // Handle request for login redirect
 function handleLoginRedirectRequest (request, sender, sendResponse) {
-  let url = 'https://staging-fullpm.wiredcraft.net/auth/github?redirect=' + encodeURIComponent(sender.tab.url)
+  var url = 'https://staging-fullpm.wiredcraft.net/auth/github?redirect=' + encodeURIComponent(sender.tab.url)
   chrome.tabs.update(sender.tab.id, { url: url });
 }
 
@@ -52,3 +52,9 @@ function getLoggedInStatus () {
       })
   })
 }
+
+// Login to FullPM on installation
+chrome.runtime.onInstalled.addListener(function () {
+  var url = 'https://staging-fullpm.wiredcraft.net/auth/github?redirect=' + encodeURIComponent('https://github.com')
+  chrome.tabs.create({ url: url })
+})
