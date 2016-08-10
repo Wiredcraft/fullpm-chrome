@@ -10,8 +10,6 @@ function getJsonFromUrl() {
 };
 
 function generateIframe(queryObj) {
-  var iframe = document.createElement('iframe')
-
   var iframe = document.createElement('iframe');
   iframe.id = 'fullpmIframe'
   iframe.src = 'https://staging-fullpm.wiredcraft.net/boards/' + queryObj.name + '/' + queryObj.repo;
@@ -30,6 +28,5 @@ function generateIframe(queryObj) {
 };
 
 var iframe = generateIframe(getJsonFromUrl())
-var fullpm = document.getElementById('fullpm')
-fullpm.appendChild(iframe)
-// document.getElementById('fullpmIframe').onload = function ()
+var container = document.getElementById('fullpm')
+container.appendChild(iframe)
