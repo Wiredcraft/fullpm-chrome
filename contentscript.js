@@ -4,15 +4,15 @@ var contentHeight // header + footer only height
 // Append board button to page
 function appendButtonToNav () {
   // Stop if button exists already
-  if (document.getElementById('fullpm')) { return null }
+  if (document.getElementById('fpmButton')) { return null }
 
   navElem = document.getElementsByClassName('js-repo-nav')[0]
   if (navElem) {
     aEl = document.createElement('a');
     aEl.addEventListener('click', appendContentToPage)
     aEl.text = 'Board';
-    aEl.id = 'fullpm';
-    aEl.href = '#fullpm';
+    aEl.id = 'fpmButton';
+    aEl.href = '#board';
     aEl.classList = ['js-selected-navigation-item reponav-item']
     navElem.appendChild(aEl)
   }
@@ -60,6 +60,7 @@ function appendContentToPage () {
 
   // Create our content
   iframe = document.createElement('iframe');
+  iframe.id = 'fpmContainer'
   iframe.src = chrome.runtime.getURL('frame/index.html' + queryString);
   iframe.style.cssText = 'width:100%;height:' + iframeHeight + 'px;border:none;position:absolute;left:0;';
 
@@ -69,7 +70,7 @@ function appendContentToPage () {
   // Our link should be selected now
   var activeLinkEl = document.getElementsByClassName('selected reponav-item')[0]
   activeLinkEl.classList.remove("selected")
-  this.classList.add('selected')
+  document.getElementById('fpmButton').classList.add('selected')
 
   window.onresize = resize
 }
@@ -79,6 +80,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   switch (request.type) {
     case 'complete': // GitHub AJAX page updates complete, ensure kanban button is still appended to tabs
       appendButtonToNav()
+      if (window.location.hash === '#board') appendContentToPage() // If #board is in url on github page, open our tab
       break
     default:
       console.info('Unexpected message received:', request, sender)
