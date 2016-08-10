@@ -22,7 +22,7 @@ function appendButtonToNav () {
 function resize () {
   var pageHeight = window.document.documentElement.clientHeight;
   var iframeHeight = pageHeight - contentHeight - 5; // -5 extra padding/margin
-  iframe.style.cssText = 'width:100%;height:' + iframeHeight  + 'px;border:none';
+  iframe.style.cssText = 'width:100%;height:' + iframeHeight  + 'px;border:none;position:absolute;left:0;';
 }
 
 // Replace content with board
@@ -33,25 +33,35 @@ function appendContentToPage () {
   var repo = pathArray[1]
   var queryString = '?name=' + encodeURIComponent(name) + '&repo=' + encodeURIComponent(repo)
 
-  // Tab content element
+  // Remove GitHub body content
   contentElem = document.getElementsByClassName('repository-content')[0]
-
-  // Clear contentElem for our content
   while (contentElem.firstChild) {
     contentElem.removeChild(contentElem.firstChild);
   }
 
-  // Set content height (as only header & footer are left on page now)
+  // Remove GitHub Footer
+  pageFooter = document.getElementsByClassName('site-footer-container')[0]
+  while (pageFooter.firstChild) {
+    pageFooter.removeChild(pageFooter.firstChild)
+  }
+
+  // Zero-out uneeded margins
+  pageHeader = document.getElementsByClassName('pagehead')[0]
+  if (pageHeader) {
+    pageHeader.style.cssText = 'margin-bottom:0;'
+  }
+
+  // Set content height (as only header is left on page now)
   contentHeight = document.body.clientHeight;
 
-  // Calculate height for iframe
+  // Calculate height for iframe (viewport minus contentHeight)
   var pageHeight = document.documentElement.clientHeight;
   var iframeHeight = pageHeight - contentHeight - 5; // -5 extra padding/margin
 
   // Create our content
   iframe = document.createElement('iframe');
   iframe.src = chrome.runtime.getURL('frame/index.html' + queryString);
-  iframe.style.cssText = 'width:100%;height:' + iframeHeight + 'px;border:none';
+  iframe.style.cssText = 'width:100%;height:' + iframeHeight + 'px;border:none;position:absolute;left:0;';
 
   // Append our content to the content element
   contentElem.appendChild(iframe)
