@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "fullpm",
-  "description": "Google Chrome extension for FullPM",
+  "name": "FullPM",
+  "description": "Google Chrome extension for FullPM, kanban boards for GitHub",
   "version": "0.0.1",
   "background" : {
     "scripts" : [
