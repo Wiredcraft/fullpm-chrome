@@ -15,7 +15,7 @@ If installed correctly, you should see a new "Kanban" tab when visiting any GitH
 
 ## Extra
 
-Once installed further management of the extension is available at `chrome://extensions/`;
+You can manage additional settings by visiting the `chrome://extensions/` page;
 
  - Inspect the background page
  - Reload the extension (after you make changes)
