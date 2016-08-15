@@ -11,11 +11,18 @@ function appendButtonToNav () {
   if (navElem) {
     aEl = document.createElement('a');
     aEl.addEventListener('click', appendContentToPage)
-    aEl.text = 'Board';
     aEl.id = 'fpmButton';
     aEl.href = '#board';
     aEl.classList = ['js-selected-navigation-item reponav-item']
     navElem.appendChild(aEl)
+
+    var content = '';
+    content += '<svg aria-hidden="true" class="octicon" height="15" version="1.1" viewBox="0 0 15 15" width="15">';
+    content += '<path d="M7,1 L8,1 L8,14 L7,14 L7,1 Z M0,0 L15,0 L15,1 L0,1 L0,0 Z M0,14 L15,14 L15,15 L0,15 L0,14 Z M0,1 L1,1 L1,14 L0,14 L0,1 Z M14,1 L15,1 L15,14 L14,14 L14,1 Z M2,2 L6,2 L6,4 L2,4 L2,2 Z M9,2 L13,2 L13,4 L9,4 L9,2 Z M2,5 L6,5 L6,7 L2,7 L2,5 Z M9,5 L13,5 L13,7 L9,7 L9,5 Z M2,8 L6,8 L6,10 L2,10 L2,8 Z"></path>';
+    content += '</svg>';
+    content += ' Board';
+
+    aEl.innerHTML = content;
   }
 }
 
