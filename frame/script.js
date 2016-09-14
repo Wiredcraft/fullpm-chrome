@@ -1,3 +1,5 @@
+const FPM_URL = 'https://app.fullpm.com';
+
 // Parse the querystring
 function getJsonFromUrl() {
   var query = location.search.substr(1);
@@ -12,7 +14,7 @@ function getJsonFromUrl() {
 function generateIframe(queryObj) {
   var iframe = document.createElement('iframe');
   iframe.id = 'fullpmIframe'
-  iframe.src = 'https://staging-fullpm.wiredcraft.net/boards/' + queryObj.name + '/' + queryObj.repo;
+  iframe.src = FPM_URL +'/boards/' + queryObj.name + '/' + queryObj.repo;
   iframe.style.cssText = 'width:100%;height:100%;border:none;margin:0 auto;display:block;';
 
   iframe.onload = function () {

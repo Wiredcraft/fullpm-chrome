@@ -1,3 +1,5 @@
+const FPM_URL = 'https://app.fullpm.com';
+
 // Detect url changes here and message tab to update
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if (changeInfo.status === 'complete') {
@@ -22,7 +24,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 // Handle request for login redirect
 function handleLoginRedirectRequest (request, sender, sendResponse) {
-  var url = 'https://staging-fullpm.wiredcraft.net/auth/github?redirect=' + encodeURIComponent(sender.tab.url)
+  var url = FPM_URL +'/auth/github?redirect=' + encodeURIComponent(sender.tab.url)
   chrome.tabs.update(sender.tab.id, { url: url });
 }
 
@@ -41,7 +43,7 @@ function handleStatusRequest (request, sender, sendResponse) {
 // Request FullPM /user endpoint for logged in status
 function getLoggedInStatus () {
   return new Promise(function (resolve, reject) {
-    fetch('https://staging-fullpm.wiredcraft.net/auth/user', {
+    fetch(FPM_URL +'/auth/user', {
       credentials: 'include'
     }).then(function (res) {
         if (res.status !== 200) return reject(res.statusText)
@@ -55,6 +57,6 @@ function getLoggedInStatus () {
 
 // Login to FullPM on installation
 chrome.runtime.onInstalled.addListener(function () {
-  var url = 'https://staging-fullpm.wiredcraft.net/auth/github?redirect=' + encodeURIComponent('https://github.com')
+  var url = FPM_URL +'/auth/github?redirect=' + encodeURIComponent('https://github.com')
   chrome.tabs.create({ url: url })
 })
